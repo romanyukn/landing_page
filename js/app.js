@@ -51,9 +51,18 @@ const navBar = document.getElementById("navbar__list");
  *
  */
 const setNavigation = () => {
-  sectionsData.forEach((section) => {
+  sections.forEach((section, index) => {
     const navItem = document.createElement("li");
-    navBar.appendChild(navItem).textContent = section.header;
+    const navLink = document.createElement("a");
+    navLink.textContent = sectionsData[index].header;
+    navLink.className = "menu__link";
+    navLink.onclick = () => {
+      section.scrollIntoView({
+        behavior: "smooth",
+      });
+    };
+    navItem.appendChild(navLink);
+    navBar.appendChild(navItem);
   });
 };
 
