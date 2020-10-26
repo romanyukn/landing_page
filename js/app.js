@@ -56,6 +56,7 @@ const setNavigation = () => {
     const navLink = document.createElement("a");
     navLink.textContent = sectionsData[index].header;
     navLink.className = "menu__link";
+    navLink.dataset.id = section.parentElement.id;
 
     navLink.onclick = () => {
       section.scrollIntoView({
@@ -82,7 +83,17 @@ document.onscroll = () => {
       bottom: navBarBottom + upperViewPortWidth,
     };
     if (top < upperViewPort.bottom && top > upperViewPort.top) {
-      console.log(section.parentElement.id);
+      setActiveNavLink(section.parentElement.id);
+    }
+  });
+};
+
+const setActiveNavLink = (id) => {
+  navBar.querySelectorAll("a").forEach((element) => {
+    if (element.dataset.id === id) {
+      element.className = "active";
+    } else {
+      element.className = "menu__link";
     }
   });
 };
