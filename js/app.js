@@ -42,10 +42,13 @@ const sectionsData = [
   },
 ];
 
+const main = document.querySelector("main");
 const sections = document.querySelectorAll(".landing__container");
 const navBar = document.getElementById("navbar__list");
+const mainHeader = document.querySelector(".main__hero");
 const upperViewPortWidth = 200;
 const sectionOffset = 200;
+console.log(mainHeader);
 /**
  * End Global Variables
  * Start Helper Functions
@@ -120,9 +123,21 @@ const biuldSections = () => {
   });
 };
 
+const buildUpButton = () => {
+  const upButton = document.getElementById("scroll-up");
+  const scrollTo = document.getElementById("scroll-to");
+  upButton.textContent = "Go up";
+  upButton.onclick = () => {
+    scrollTo.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+};
+
 setNavigation();
 setHeader("Natalia's CV page");
 biuldSections();
+buildUpButton();
 
 /**
  * End Helper Functions

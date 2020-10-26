@@ -119,6 +119,15 @@ section {
   color: #fff;
 }
 
+/* Go Up Button Styles */
+.button {
+  padding: 1em;
+  margin-right: 1.5em;
+  position: absolute;
+  right: 0;
+  font-size: 20px;
+}
+
 /* ---- Theme Rules ---- */
 /* Landing Container Styles */
 .landing__container {
