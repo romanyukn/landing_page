@@ -45,6 +45,7 @@ const sectionsData = [
 const sections = document.querySelectorAll(".landing__container");
 const navBar = document.getElementById("navbar__list");
 const upperViewPortWidth = 200;
+const sectionOffset = 200;
 /**
  * End Global Variables
  * Start Helper Functions
@@ -62,12 +63,6 @@ const setNavigation = () => {
       section.scrollIntoView({
         behavior: "smooth",
       });
-      navLink.className = "active";
-      navBar.querySelectorAll("a").forEach((element) => {
-        if (element !== navLink) {
-          element.className = "menu__link";
-        }
-      });
     };
     navItem.appendChild(navLink);
     navBar.appendChild(navItem);
@@ -77,7 +72,7 @@ const setNavigation = () => {
 document.onscroll = () => {
   sections.forEach((section) => {
     const navBarBottom = navBar.getBoundingClientRect().bottom;
-    const top = section.getBoundingClientRect().top;
+    const top = section.getBoundingClientRect().top + sectionOffset;
     const upperViewPort = {
       top: navBarBottom,
       bottom: navBarBottom + upperViewPortWidth,
