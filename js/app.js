@@ -44,7 +44,7 @@ const sectionsData = [
 
 const sections = document.querySelectorAll(".landing__container");
 const navBar = document.getElementById("navbar__list");
-
+const upperViewPortWidth = 200;
 /**
  * End Global Variables
  * Start Helper Functions
@@ -56,13 +56,34 @@ const setNavigation = () => {
     const navLink = document.createElement("a");
     navLink.textContent = sectionsData[index].header;
     navLink.className = "menu__link";
+
     navLink.onclick = () => {
       section.scrollIntoView({
         behavior: "smooth",
       });
+      navLink.className = "active";
+      navBar.querySelectorAll("a").forEach((element) => {
+        if (element !== navLink) {
+          element.className = "menu__link";
+        }
+      });
     };
     navItem.appendChild(navLink);
     navBar.appendChild(navItem);
+  });
+};
+
+document.onscroll = () => {
+  sections.forEach((section) => {
+    const navBarBottom = navBar.getBoundingClientRect().bottom;
+    const top = section.getBoundingClientRect().top;
+    const upperViewPort = {
+      top: navBarBottom,
+      bottom: navBarBottom + upperViewPortWidth,
+    };
+    if (top < upperViewPort.bottom && top > upperViewPort.top) {
+      console.log(section.parentElement.id);
+    }
   });
 };
 
